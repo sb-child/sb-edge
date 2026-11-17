@@ -510,7 +510,8 @@ def build_linux_amd64() -> None:
 def build_linux_arm64() -> None:
     # https://github.com/uber/hermetic_cc_toolchain/issues/269
     # https://github.com/rust-lang/rust/pull/164752
-    # 我也不知道应该修什么东西
+    # https://github.com/rust-lang/rust/issues/161486
+    # 我看完之后也不知道应该修什么东西，我系统不能那么旧。
     print("正在执行: build_linux_arm64() ...")
     abi = "arm64-v8a"
     build_linux(abi)
