@@ -38,13 +38,13 @@ impl Payload {
         ensure!(
             !self.jar_data.is_empty(),
             EmptyDataSnafu {
-                field: "jar_digest",
+                field: "jar_data",
             }
         );
         ensure!(
             !self.lib_data.is_empty(),
             EmptyDataSnafu {
-                field: "lib_digest",
+                field: "lib_data",
             }
         );
         let calculated_jar_digest = Sha256::digest(&self.jar_data);

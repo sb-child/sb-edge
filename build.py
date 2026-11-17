@@ -152,7 +152,7 @@ def ensure_javac_installed():
 
 
 def _cargo_install(crate_name: str, upgrade: bool):
-    if upgrade:
+    if not upgrade:
         cmd = ["cargo", "install", crate_name]
     else:
         cmd = ["cargo", "install-update", crate_name]
