@@ -494,7 +494,6 @@ def build_linux_binary(abi: str):
 
 def build_linux(abi: str) -> Path:
     target = _abi_to_linux_target(abi)
-
     linux_binary = build_linux_binary(abi)
     shipped = ship(linux_binary, target)
     shipped_size = shipped.stat().st_size
@@ -508,11 +507,20 @@ def build_linux_amd64() -> None:
     build_linux(abi)
 
 
+def build_linux_arm64() -> None:
+    # https://github.com/uber/hermetic_cc_toolchain/issues/269
+    # https://github.com/rust-lang/rust/pull/164752
+    # 我也不知道应该修什么东西
+    print("正在执行: build_linux_arm64() ...")
+    abi = "arm64-v8a"
+    build_linux(abi)
+
+
 # ---
 
 
 def exit_not_implemented(detail: str) -> None:
-    print(f"错误: {detail} 还没有实现。", file=sys.stderr)
+    print(f"错误: {detail} 还没有实现。如果你愿意你可以去源码实现它。", file=sys.stderr)
     sys.exit(1)
 
 
@@ -547,6 +555,8 @@ def main() -> None:
     elif args.linux is not None:
         if args.linux == "amd64":
             build_linux_amd64()
+        elif args.linux == "arm64":
+            build_linux_arm64()
         else:
             exit_not_implemented(f"--linux {args.linux}")
 
