@@ -5,6 +5,7 @@ use jni::{
 };
 
 pub mod android;
+pub mod cli;
 pub mod embed;
 pub mod entrypoint;
 pub mod vfs;
